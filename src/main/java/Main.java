@@ -20,7 +20,8 @@ public class Main {
                 "Babcia + Dziadek",
                 "Kacper",
                 "Ciocia Jola",
-                "Ciocia Danusia"
+                "Ciocia Danusia",
+                "Jeremiasz"
         );
         List<String> buyers = Arrays.asList(
                 "Ewa",
