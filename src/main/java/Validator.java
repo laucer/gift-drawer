@@ -1,4 +1,6 @@
+import java.io.Console;
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -6,19 +8,47 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Validator {
 
     public static void assertEveryoneWillReceiveAGift(List<String> people, Map<String, List<String>> assignedPeople) {
+        HashMap<String, Integer> receiversHash = new HashMap<String, Integer>();
+
+        assignedPeople.forEach(
+                (buyer, receivers) -> receivers.forEach(
+                        name -> {
+                            receiversHash.put(name, 1);
+                        }
+                )
+        );
+
         people.forEach(
                 person -> {
-                    AtomicBoolean foundMatch = new AtomicBoolean(false);
-                    assignedPeople.forEach(
-                            (buyer, receivers) -> receivers.forEach(
-                                    name -> {
-                                        if (name.equals(person))
-                                            foundMatch.set(true);
-                                    }
-                            )
-                    );
-                    if (!foundMatch.get())
+                    if (!receiversHash.containsKey(person))
                         throw new RuntimeException("Drawing failed. " + person + " will not receive a gift.");
+                }
+        );
+
+    }
+
+    public static void assertEveryoneWillReceiveOneGift(List<String> people, Map<String, List<String>> assignedPeople) {
+        HashMap<String, Integer> receiversHash = new HashMap<>();
+
+        assignedPeople.forEach(
+                (buyer, receivers) -> receivers.forEach(
+                        name -> {
+                            if (!receiversHash.containsKey(name))
+                                receiversHash.put(name, 1);
+                            else {
+                                receiversHash.put(name,receiversHash.get(name)+1);
+                            }
+                        }
+                )
+        );
+
+        people.forEach(
+                person -> {
+                    if (receiversHash.containsKey(person)){
+                        int cnt = receiversHash.get(person);
+                        if (cnt != 1)
+                            throw new RuntimeException("Drawing failed. " + person + " will receive " + cnt + " gifts.");
+                    }
                 }
         );
 

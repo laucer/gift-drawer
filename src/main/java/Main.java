@@ -36,6 +36,7 @@ public class Main {
         GiftAssigner giftAssigner = new GiftAssigner(participants, buyers);
         Map<String, List<String>> assignedPeople = giftAssigner.assign();
         Validator.assertEveryoneWillReceiveAGift(participants, assignedPeople);
+        Validator.assertEveryoneWillReceiveOneGift(participants, assignedPeople);
         Validator.assertBuyerDoNotBuyAGiftForHimself(assignedPeople);
         Validator.assertProperNumberOfReceiversForEveryBuyer(assignedPeople, participants.size(), buyers.size());
         ResultSaver.save(assignedPeople);
