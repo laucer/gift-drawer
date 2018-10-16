@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
@@ -29,6 +30,7 @@ public class Main {
                 "Lucjan",
                 "Luizka"
         );
+        Collections.shuffle(buyers);
         GiftAssigner giftAssigner = new GiftAssigner(participants, buyers);
         ResultSaver.save(giftAssigner.assign());
     }
