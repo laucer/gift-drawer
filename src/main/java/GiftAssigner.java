@@ -13,7 +13,7 @@ public class GiftAssigner {
     }
 
     public Map<String, List<String>> assign() throws InterruptedException {
-        Map<String, List<String>> assignedPeople = null;
+        Map<String, List<String>> assignedPeople;
         int attempts = 0;
         do {
             if (attempts > MAX_DRAW_ATTEMPTS)
@@ -60,7 +60,7 @@ public class GiftAssigner {
                 return -1;
             recipientIndex = random.nextInt(peopleToAssign.size());
             attempts++;
-            Thread.currentThread().sleep(10);
+            Thread.sleep(10);
         }
         while (buyer.equals(peopleToAssign.get(recipientIndex)));
         return recipientIndex;
