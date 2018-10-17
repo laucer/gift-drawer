@@ -1,42 +1,36 @@
-import java.io.Console;
 import java.io.File;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Validator {
 
     public static void assertEveryoneWillReceiveAGift(List<String> people, Map<String, List<String>> assignedPeople) {
-        HashMap<String, Integer> receiversHash = new HashMap<String, Integer>();
+        HashSet<String> receivals = new HashSet<>();
 
         assignedPeople.forEach(
-                (buyer, receivers) -> receivers.forEach(
-                        name -> {
-                            receiversHash.put(name, 1);
-                        }
-                )
+                (buyer, receivers) -> receivals.addAll(receivers)
         );
 
         people.forEach(
                 person -> {
-                    if (!receiversHash.containsKey(person))
+                    if (!receivals.contains(person))
                         throw new RuntimeException("Drawing failed. " + person + " will not receive a gift.");
                 }
         );
-
     }
 
     public static void assertEveryoneWillReceiveOneGift(List<String> people, Map<String, List<String>> assignedPeople) {
-        HashMap<String, Integer> receiversHash = new HashMap<>();
+        HashMap<String, Integer> receivalCounts = new HashMap<>();
 
         assignedPeople.forEach(
                 (buyer, receivers) -> receivers.forEach(
                         name -> {
-                            if (!receiversHash.containsKey(name))
-                                receiversHash.put(name, 1);
+                            if (!receivalCounts.containsKey(name))
+                                receivalCounts.put(name, 1);
                             else {
-                                receiversHash.put(name,receiversHash.get(name)+1);
+                                receivalCounts.put(name,receivalCounts.get(name)+1);
                             }
                         }
                 )
@@ -44,14 +38,13 @@ public class Validator {
 
         people.forEach(
                 person -> {
-                    if (receiversHash.containsKey(person)){
-                        int cnt = receiversHash.get(person);
-                        if (cnt != 1)
-                            throw new RuntimeException("Drawing failed. " + person + " will receive " + cnt + " gifts.");
+                    if (receivalCounts.containsKey(person)){
+                        int presentsCount = receivalCounts.get(person);
+                        if (presentsCount != 1)
+                            throw new RuntimeException("Drawing failed. " + person + " will receive " + presentsCount + " gifts.");
                     }
                 }
         );
-
     }
 
     public static void assertProperNumberOfFiles(List<String> buyers) {
