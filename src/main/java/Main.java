@@ -18,10 +18,9 @@ public class Main {
                 "Grzesiek",
                 "Laura",
                 "Klara",
-                "Babcia + Dziadek",
-                "Kacper",
-                "Ciocia Jola",
-                "Ciocia Danusia",
+                "Babcia",
+                "CiociaJola",
+                "CiociaDanusia",
                 "Jeremiasz"
         );
         List<String> buyers = Arrays.asList(
@@ -30,7 +29,11 @@ public class Main {
                 "Mateusz",
                 "Honoratka",
                 "Lucjan",
-                "Luizka"
+                "Luizka",
+                "CiociaJola",
+                "CiociaDanusia",
+                "Mama",
+                "Tata"
         );
         Collections.shuffle(buyers);
         GiftAssigner giftAssigner = new GiftAssigner(participants, buyers);
