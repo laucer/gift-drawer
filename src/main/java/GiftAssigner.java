@@ -34,6 +34,9 @@ public class GiftAssigner {
             if (recipientIndex == -1)
                 return null;
             String buyer = buyers.get(currentBuyer);
+            if (buyer.equals("Ewa") && !assignedPeople.get("Ewa").isEmpty()) {
+                continue;
+            }
             String recipient = peopleToAssign.get(recipientIndex);
             assignedPeople.get(buyer).add(recipient);
             currentBuyer = (currentBuyer + 1) % buyers.size();
