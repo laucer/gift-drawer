@@ -21,7 +21,8 @@ public class Main {
                 "CiociaJola",
                 "CiociaDanusia",
                 "Kuba",
-                "Alicja"
+                "Alicja",
+                "Marcin"
         );
         List<String> buyers = Arrays.asList(
                 "Ewa",
