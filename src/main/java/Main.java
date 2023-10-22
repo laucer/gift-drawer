@@ -15,13 +15,13 @@ public class Main {
                 "Ewa",
                 "Mama",
                 "Tata",
-                "Grzesiek",
                 "Laura",
                 "Klara",
-                "Babcia",
+                "Jeremiasz",
                 "CiociaJola",
                 "CiociaDanusia",
-                "Jeremiasz"
+                "Kuba",
+                "Alicja"
         );
         List<String> buyers = Arrays.asList(
                 "Ewa",
