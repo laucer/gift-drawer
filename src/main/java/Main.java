@@ -33,7 +33,8 @@ public class Main {
                 "CiociaJola",
                 "CiociaDanusia",
                 "Mama",
-                "Tata"
+                "Tata",
+                "Kuba"
         );
         Collections.shuffle(buyers);
         GiftAssigner giftAssigner = new GiftAssigner(participants, buyers);
