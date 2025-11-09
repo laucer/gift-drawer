@@ -37,6 +37,7 @@ public class Main {
                 "Mama",
                 "Tata",
                 "Kuba",
+                "Alicja",
                 "Marcin"
         );
         Collections.shuffle(buyers);
